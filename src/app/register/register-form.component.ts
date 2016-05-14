@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm }    from '@angular/common';
-import { User }    from './user';
+import { User }    from '../db_table_models/user';
 @Component({
   selector: 'register-form',
   templateUrl: 'app/register/register-form.component.html'

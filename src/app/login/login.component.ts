@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm }    from '@angular/common';
+import { User }    from '../db_table_models/user';
 
 @Component({
   moduleId: module.id,
@@ -15,5 +17,11 @@ export class LoginComponent implements OnInit {
 
 
   }
+
+  model = new User(1, 'example@example.com', 'test');
+  submitted = false;
+  onSubmit() { this.submitted = true; }
+  // TODO: Remove this when we're done
+  get diagnostic() { return JSON.stringify(this.model); }
 
 }
