@@ -14,10 +14,10 @@ var register_form_component_1 = require('./register/register-form.component');
 var login_component_1 = require('./login/login.component');
 var SlothboxAppComponent = (function () {
     function SlothboxAppComponent(af) {
-        this.title = exports.appName;
+        this.title = 'nimbus';
         this.registration = false;
         this.login = false;
-        this.welcome = "Welcome to Sloth Box the all in one cloud storage manager!";
+        this.welcome = "Welcome to nimbus the all in one cloud storage manager!";
     }
     SlothboxAppComponent = __decorate([
         core_1.Component({
@@ -32,5 +32,4 @@ var SlothboxAppComponent = (function () {
     return SlothboxAppComponent;
 }());
 exports.SlothboxAppComponent = SlothboxAppComponent;
-exports.appName = 'nimbus';
 //# sourceMappingURL=slothbox.component.js.map
