@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
-
+import { Component }         from '@angular/core';
+import { RegisterFormComponent } from './register/register-form.component'
 @Component({
-    selector: 'my-app',
-    template: '<h1>My First Angular 2 App</h1>'
+  selector: 'my-app',
+  template: 'Test <register-form></register-form>',
+  directives: [RegisterFormComponent]
 })
 export class AppComponent { }
