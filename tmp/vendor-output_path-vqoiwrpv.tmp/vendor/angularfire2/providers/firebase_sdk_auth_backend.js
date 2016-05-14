@@ -1,0 +1,1 @@
+/Users/austinbuckler/Desktop/angularattack2016-westcoastbestcoast/tmp/vendor-input_base_path-WVWe0Qaz.tmp/0/angularfire2/providers/firebase_sdk_auth_backend.js

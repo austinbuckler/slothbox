@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { AngularFire } from 'angularfire2';
 import { RegisterFormComponent } from './register/register-form.component'
 import { LoginComponent } from './login/login.component'
@@ -8,10 +9,27 @@ import { LoginComponent } from './login/login.component'
   selector: 'slothbox-app',
   templateUrl: 'slothbox.component.html',
   styleUrls: ['slothbox.component.css'],
-  directives: [RegisterFormComponent,LoginComponent]
+  directives: [ROUTER_DIRECTIVES],
+  providers: [
+    ROUTER_PROVIDERS
+  ]
 })
+
+@RouteConfig([
+  {
+    path: '/login',
+    name: 'Login',
+    component: LoginComponent
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: RegisterFormComponent
+  }
+])
+
 export class SlothboxAppComponent {
-  title = 'nimbus';
+  public title = 'nimbus';
   registration = false;
   constructor(af:AngularFire) {}
   login = false;
