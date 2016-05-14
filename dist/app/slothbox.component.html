@@ -1,4 +1,15 @@
-<h1>
+<section class="container">
+  <h1 class="app-name">{{title}}</h1>
+  <h3 class="app-welcome">{{welcome}}</h3>
+  <nav class="navigation">
+    <a [routerLink]="['Login']">Login</a>
+    <a [routerLink]="['Register']">Register</a>
+  </nav>
+  <router-outlet></router-outlet>
+</section>
+
+
+<!-- <h1>
   {{title}}
 </h1>
 
