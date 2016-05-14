@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   }
   login() {
     this.af.auth.login({
-      provider: AuthProviders.Twitter,
+      provider: AuthProviders.Google,
       method: AuthMethods.Popup,
     });
   }

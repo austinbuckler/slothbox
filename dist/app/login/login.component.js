@@ -17,7 +17,7 @@ var LoginComponent = (function () {
     }
     LoginComponent.prototype.login = function () {
         this.af.auth.login({
-            provider: angularfire2_1.AuthProviders.Twitter,
+            provider: angularfire2_1.AuthProviders.Google,
             method: angularfire2_1.AuthMethods.Popup,
         });
     };
