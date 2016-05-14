@@ -1,14 +1,4 @@
-<div class="container">
-    <h1>Login Form</h1>
-    <form>
-      <div class="form-group">
-
-        <div> {{ (af.auth | async).uid }} </div>
-      <button (click)="login()">Login</button>
-      </div>
-    </form>
-    {{diagnostic}}
-</div>
+<button class="button" (click)="login()">Login</button>
+{{diagnostic}}
 
 
-  

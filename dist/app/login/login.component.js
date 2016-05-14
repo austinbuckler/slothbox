@@ -9,11 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_deprecated_1 = require('@angular/router-deprecated');
 var angularfire2_1 = require('angularfire2');
 var LoginComponent = (function () {
-    function LoginComponent(af) {
+    function LoginComponent(router, af) {
+        this.router = router;
         this.af = af;
-        this.af.auth.subscribe(function (auth) { return console.log(auth); });
+        this.af.auth.subscribe(function (auth) {
+            if (auth) {
+                router.navigate(['FileUpload']);
+            }
+        });
     }
     LoginComponent.prototype.login = function () {
         this.af.auth.login({
@@ -28,6 +34,7 @@ var LoginComponent = (function () {
         });
     };
     LoginComponent.prototype.ngOnInit = function () {
+        // console.log(this.af.auth.getAuth().uid);
     };
     LoginComponent = __decorate([
         core_1.Component({
@@ -36,7 +43,7 @@ var LoginComponent = (function () {
             templateUrl: 'login.component.html',
             styleUrls: ['login.component.css']
         }), 
-        __metadata('design:paramtypes', [angularfire2_1.AngularFire])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, angularfire2_1.AngularFire])
     ], LoginComponent);
     return LoginComponent;
 }());

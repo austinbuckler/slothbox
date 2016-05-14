@@ -8,16 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var angularfire2_1 = require('angularfire2');
 var login_component_1 = require('./login/login.component');
+var file_upload_component_1 = require('./file-upload/file-upload.component');
 var SlothboxAppComponent = (function () {
-    function SlothboxAppComponent(af) {
+    function SlothboxAppComponent(af, auth, router) {
+        this.af = af;
+        this.auth = auth;
+        this.router = router;
         this.title = 'nimbus';
-        this.login = false;
         this.welcome = "Welcome to nimbus the all in one cloud storage manager!";
     }
+    SlothboxAppComponent.prototype.logout = function () {
+        this.af.auth.logout();
+        this.router.navigate(['Login']);
+    };
     SlothboxAppComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -33,10 +43,17 @@ var SlothboxAppComponent = (function () {
             {
                 path: '/login',
                 name: 'Login',
-                component: login_component_1.LoginComponent
+                component: login_component_1.LoginComponent,
+                useAsDefault: true
+            },
+            {
+                path: '/upload',
+                name: 'FileUpload',
+                component: file_upload_component_1.FileUploadComponent
             }
-        ]), 
-        __metadata('design:paramtypes', [angularfire2_1.AngularFire])
+        ]),
+        __param(1, core_1.Inject(angularfire2_1.FirebaseAuth)), 
+        __metadata('design:paramtypes', [angularfire2_1.AngularFire, angularfire2_1.FirebaseAuth, router_deprecated_1.Router])
     ], SlothboxAppComponent);
     return SlothboxAppComponent;
 }());
