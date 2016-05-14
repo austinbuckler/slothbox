@@ -1,0 +1,10 @@
+<h1>
+  {{title}}
+</h1>
+
+
+<p (click)="registration = true" style="cursor:pointer;"> Click Here to register</p>
+
+<div *ngIf="registration" >
+ <register-form></register-form>
+</div>
