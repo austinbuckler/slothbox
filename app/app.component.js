@@ -12,11 +12,16 @@ var core_1 = require('@angular/core');
 var register_form_component_1 = require('./register/register-form.component');
 var AppComponent = (function () {
     function AppComponent() {
+        this.registration = false;
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: 'Test <register-form></register-form>',
+            template: '<h1>SlothBox</h1>' +
+                '<p (click)="registration = true" style="cursor:pointer;"> Click Here to register</p>' +
+                '<div *ngIf="registration" >' +
+                '<register-form></register-form>' +
+                '</div>',
             directives: [register_form_component_1.RegisterFormComponent]
         }), 
         __metadata('design:paramtypes', [])
