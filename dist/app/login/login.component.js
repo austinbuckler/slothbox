@@ -9,11 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var user_1 = require('../db_table_models/user');
 var LoginComponent = (function () {
     function LoginComponent() {
+        this.model = new user_1.User(1, 'example@example.com', 'test');
+        this.submitted = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
+    LoginComponent.prototype.onSubmit = function () { this.submitted = true; };
+    Object.defineProperty(LoginComponent.prototype, "diagnostic", {
+        // TODO: Remove this when we're done
+        get: function () { return JSON.stringify(this.model); },
+        enumerable: true,
+        configurable: true
+    });
     LoginComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
