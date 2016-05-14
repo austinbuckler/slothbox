@@ -11,12 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var angularfire2_1 = require('angularfire2');
-var register_form_component_1 = require('./register/register-form.component');
 var login_component_1 = require('./login/login.component');
 var SlothboxAppComponent = (function () {
     function SlothboxAppComponent(af) {
         this.title = 'nimbus';
-        this.registration = false;
         this.login = false;
         this.welcome = "Welcome to nimbus the all in one cloud storage manager!";
     }
@@ -36,11 +34,6 @@ var SlothboxAppComponent = (function () {
                 path: '/login',
                 name: 'Login',
                 component: login_component_1.LoginComponent
-            },
-            {
-                path: '/register',
-                name: 'Register',
-                component: register_form_component_1.RegisterFormComponent
             }
         ]), 
         __metadata('design:paramtypes', [angularfire2_1.AngularFire])
