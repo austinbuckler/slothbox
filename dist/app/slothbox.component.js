@@ -10,10 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var register_form_component_1 = require('./register/register-form.component');
+var login_component_component_1 = require('./login-component/login-component.component');
 var SlothboxAppComponent = (function () {
     function SlothboxAppComponent() {
-        this.title = 'cloud works!';
+        this.title = 'Sloth Box';
         this.registration = false;
+        this.login = false;
+        this.welcome = "Welcome to Sloth Box the all in one cloud storage manager!";
     }
     SlothboxAppComponent = __decorate([
         core_1.Component({
@@ -21,7 +24,7 @@ var SlothboxAppComponent = (function () {
             selector: 'slothbox-app',
             templateUrl: 'slothbox.component.html',
             styleUrls: ['slothbox.component.css'],
-            directives: [register_form_component_1.RegisterFormComponent]
+            directives: [register_form_component_1.RegisterFormComponent, login_component_component_1.LoginComponentComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], SlothboxAppComponent);

@@ -3,7 +3,7 @@ import { NgForm }    from '@angular/common';
 import { User }    from '../db_table_models/user';
 @Component({
   selector: 'register-form',
-  templateUrl: 'register-form.component.html'
+  templateUrl: 'app/register/register-form.component.html'
 })
 export class RegisterFormComponent {
   model = new User(1, 'example@example.com', 'test');
