@@ -9,25 +9,25 @@ import {
 import { ComponentFixture, TestComponentBuilder } from '@angular/compiler/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { LoginComponentComponent } from './login-component.component';
+import { LoginComponent } from './login.component';
 
 describe('Component: LoginComponent', () => {
   let builder: TestComponentBuilder;
 
-  beforeEachProviders(() => [LoginComponentComponent]);
+  beforeEachProviders(() => [LoginComponent]);
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
   }));
 
-  it('should inject the component', inject([LoginComponentComponent],
-      (component: LoginComponentComponent) => {
+  it('should inject the component', inject([LoginComponent],
+      (component: LoginComponent) => {
     expect(component).toBeTruthy();
   }));
 
   it('should create the component', inject([], () => {
-    return builder.createAsync(LoginComponentComponentTestController)
+    return builder.createAsync(LoginComponentTestController)
       .then((fixture: ComponentFixture<any>) => {
-        let query = fixture.debugElement.query(By.directive(LoginComponentComponent));
+        let query = fixture.debugElement.query(By.directive(LoginComponent));
         expect(query).toBeTruthy();
         expect(query.componentInstance).toBeTruthy();
       });
@@ -37,10 +37,10 @@ describe('Component: LoginComponent', () => {
 @Component({
   selector: 'test',
   template: `
-    <app-login-component></app-login-component>
+    <app-login></app-login>
   `,
-  directives: [LoginComponentComponent]
+  directives: [LoginComponent]
 })
-class LoginComponentComponentTestController {
+class LoginComponentTestController {
 }
 

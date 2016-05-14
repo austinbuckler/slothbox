@@ -10,8 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var register_form_component_1 = require('./register/register-form.component');
+var angularfire2_1 = require('angularfire2');
 var SlothboxAppComponent = (function () {
-    function SlothboxAppComponent() {
+    function SlothboxAppComponent(af) {
         this.title = 'cloud works!';
         this.registration = false;
     }
@@ -23,7 +24,7 @@ var SlothboxAppComponent = (function () {
             styleUrls: ['slothbox.component.css'],
             directives: [register_form_component_1.RegisterFormComponent]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [angularfire2_1.AngularFire])
     ], SlothboxAppComponent);
     return SlothboxAppComponent;
 }());

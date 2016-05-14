@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RegisterFormComponent } from './register/register-form.component'
+import { RegisterFormComponent } from './register/register-form.component';
+import { AngularFire } from 'angularfire2';
 @Component({
   moduleId: module.id,
   selector: 'slothbox-app',
@@ -10,5 +11,7 @@ import { RegisterFormComponent } from './register/register-form.component'
 export class SlothboxAppComponent {
   title = 'cloud works!';
   registration = false;
+
+  constructor(af:AngularFire) {}
 }
 
