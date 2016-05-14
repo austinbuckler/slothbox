@@ -3,6 +3,7 @@
 </h1>
 
 <h3>{{welcome}}</h3>
+<div>
 <p (click)="registration = !registration;login = false" style="cursor:pointer;">Sign Up</p>
 <p (click)="registration = false;login = !login;" style="cursor:pointer;">Sign In</p>
 
@@ -11,4 +12,5 @@
 </div>
 <div *ngIf="login" >
 <login-form></login-form>
+</div>
 </div>
