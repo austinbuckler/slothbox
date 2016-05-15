@@ -44,9 +44,9 @@
       <tbody>
           <tr *ngFor="let file of dropboxFiles">
               <td>{{file.name}}</td>
-              <td>{{file.name}}</td>
-              <td>{{file.name}}</td>
-              <td>{{file.name}}</td>
+              <td>{{file.client_modified}}</td>
+              <td>{{file.server_modified}}</td>
+              <td>{{file.size}}</td>
           </tr>
       </tbody>
     </table>

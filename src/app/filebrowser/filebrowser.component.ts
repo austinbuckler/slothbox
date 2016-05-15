@@ -47,7 +47,7 @@ export class FilebrowserComponent implements OnInit {
     });*/
     console.log(this.googleDriveFiles);
     console.log("dropbox token " + this.user.dropboxToken);
-   
+   this.getDropBoxFiles();
 
   }
 
