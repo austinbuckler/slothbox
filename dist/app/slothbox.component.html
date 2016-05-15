@@ -2,7 +2,7 @@
   <h1 class="app-name">{{title}}</h1>
   <h3 class="app-welcome">{{welcome}}</h3>
   <nav class="navigation">
-    <a [routerLink]="['Login']">Login</a>
+    <span *ngIf="auth | async" (click)="logout()">Logout</span>
     <a [routerLink]="['DropBox']">Dropbox</a>
   </nav>
   <router-outlet></router-outlet>

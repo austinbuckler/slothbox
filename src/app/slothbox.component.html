@@ -2,8 +2,12 @@
   <h1 class="app-name">{{title}}</h1>
   <h3 class="app-welcome">{{welcome}}</h3>
   <nav class="navigation">
+<<<<<<< HEAD
     <a [routerLink]="['Login']">Login</a>
     <a [routerLink]="['DropBox']">Dropbox</a>
+=======
+    <span *ngIf="auth | async" (click)="logout()">Logout</span>
+>>>>>>> 4832eccd2c090f69a69063a3b03291a58db417fe
   </nav>
   <router-outlet></router-outlet>
 </section>

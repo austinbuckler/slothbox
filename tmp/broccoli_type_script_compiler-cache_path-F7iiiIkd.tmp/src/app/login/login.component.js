@@ -9,29 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var user_1 = require('../db_table_models/user');
+var router_deprecated_1 = require('@angular/router-deprecated');
+var angularfire2_1 = require('angularfire2');
 var LoginComponent = (function () {
-    function LoginComponent() {
-        this.model = new user_1.User(1, 'example@example.com', 'test');
-        this.submitted = false;
+    function LoginComponent(router, af) {
+        this.router = router;
+        this.af = af;
+        this.af.auth.subscribe(function (auth) {
+            if (auth) {
+                router.navigate(['FileUpload']);
+            }
+        });
     }
-    LoginComponent.prototype.ngOnInit = function () {
+    LoginComponent.prototype.login = function () {
+        this.af.auth.login({
+            provider: angularfire2_1.AuthProviders.Google,
+            method: angularfire2_1.AuthMethods.Popup,
+        });
     };
-    LoginComponent.prototype.onSubmit = function () { this.submitted = true; };
-    Object.defineProperty(LoginComponent.prototype, "diagnostic", {
-        // TODO: Remove this when we're done
-        get: function () { return JSON.stringify(this.model); },
-        enumerable: true,
-        configurable: true
-    });
+    LoginComponent.prototype.overrideLogin = function () {
+        this.af.auth.login({
+            provider: angularfire2_1.AuthProviders.Anonymous,
+            method: angularfire2_1.AuthMethods.Anonymous,
+        });
+    };
+    LoginComponent.prototype.ngOnInit = function () {
+        // console.log(this.af.auth.getAuth().uid);
+    };
     LoginComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'app-login',
+            selector: 'login-form',
             templateUrl: 'login.component.html',
             styleUrls: ['login.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, angularfire2_1.AngularFire])
     ], LoginComponent);
     return LoginComponent;
 }());

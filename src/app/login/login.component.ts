@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm }    from '@angular/common';
-import { User }    from '../db_table_models/user';
+import { Router } from '@angular/router-deprecated';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+
 @Component({
   moduleId: module.id,
   selector: 'login-form',
@@ -10,8 +10,12 @@ import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public af: AngularFire) {
-    this.af.auth.subscribe(auth => console.log(auth));
+  constructor(private router: Router, public af: AngularFire) {
+    this.af.auth.subscribe((auth) => {
+      if (auth) {
+        router.navigate(['FileUpload']);
+      }
+    });
   }
   login() {
     this.af.auth.login({
@@ -23,13 +27,12 @@ export class LoginComponent implements OnInit {
     this.af.auth.login({
       provider: AuthProviders.Anonymous,
       method: AuthMethods.Anonymous,
-    });    
+    });
   }
 
   ngOnInit() {
 
-
-
+    // console.log(this.af.auth.getAuth().uid);
   }
 
 }
