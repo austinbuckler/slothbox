@@ -60,7 +60,7 @@ export class SlothboxAppComponent {
     public router: Router,
     public user: UserService
   ) {
-    if (auth != null) {
+    if (af.auth.getAuth() != null) {
       let googleAuth = af.auth.getAuth().google;
       user.googleToken = googleAuth.accessToken;
       user.googleAvatar = googleAuth.profileImageURL;
