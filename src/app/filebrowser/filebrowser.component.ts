@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { AngularFire } from 'angularfire2';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -9,7 +9,11 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   selector: 'slothbox-filebrowser',
   templateUrl: 'filebrowser.component.html',
   styleUrls: ['filebrowser.component.css'],
-  directives: [FileUploadComponent, SidebarComponent]
+  directives: [
+    ROUTER_DIRECTIVES,
+    FileUploadComponent,
+    SidebarComponent
+  ]
 })
 export class FilebrowserComponent implements OnInit {
 
@@ -22,7 +26,6 @@ export class FilebrowserComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

@@ -39,7 +39,7 @@ import { UserService } from './user.service';
     component: DropboxConnectComponent
   },
   {
-    path: '/auth/dropbox/',
+    path: '/auth/dropbox/:access_token&:token_type:&:uid',
     name: 'DropboxAuth',
     component: DropboxAuthComponent
   },
