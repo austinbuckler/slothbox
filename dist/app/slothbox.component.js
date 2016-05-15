@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var angularfire2_1 = require('angularfire2');
 var login_component_1 = require('./login/login.component');
+var dropbox_auth_component_1 = require('./cloud/dropbox-auth.component');
 var SlothboxAppComponent = (function () {
     function SlothboxAppComponent(af) {
         this.title = 'nimbus';
@@ -34,6 +35,11 @@ var SlothboxAppComponent = (function () {
                 path: '/login',
                 name: 'Login',
                 component: login_component_1.LoginComponent
+            },
+            {
+                path: '/auth/dropbox',
+                name: 'DropBox',
+                component: dropbox_auth_component_1.DropBoxComponent
             }
         ]), 
         __metadata('design:paramtypes', [angularfire2_1.AngularFire])

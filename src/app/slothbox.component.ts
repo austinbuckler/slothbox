@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { AngularFire } from 'angularfire2';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
+import {DropBoxComponent} from './cloud/dropbox-auth.component';
 
 @Component({
   moduleId: module.id,
@@ -19,6 +20,11 @@ import { LoginComponent } from './login/login.component'
     path: '/login',
     name: 'Login',
     component: LoginComponent
+  },
+  {
+    path: '/auth/dropbox',
+    name: 'DropBox',
+    component: DropBoxComponent
   }
 ])
 
