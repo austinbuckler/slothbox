@@ -36,9 +36,7 @@ describe('Component: FileUpload', () => {
 
 @Component({
   selector: 'test',
-  template: `
-    <app-file-upload></app-file-upload>
-  `,
+  template: `<app-file-upload></app-file-upload>`,
   directives: [FileUploadComponent]
 })
 class FileUploadComponentTestController {

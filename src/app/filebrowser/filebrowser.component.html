@@ -31,7 +31,6 @@
     </section>
   </header>
   <section class="browser">
-
     <table>
       <thead>
         <tr>
@@ -42,7 +41,12 @@
         </tr>
       </thead>
       <tbody>
-
+          <tr *ngFor="let file of theDropbox">
+              <td>{{file.name}}</td>
+              <td>{{file.client_modified}}</td>
+              <td>{{file.server_modified}}</td>
+              <td>{{file.size}}</td>
+          </tr>
       </tbody>
     </table>
     <file-upload-box></file-upload-box>

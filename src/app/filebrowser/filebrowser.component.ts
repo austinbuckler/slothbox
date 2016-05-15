@@ -22,8 +22,10 @@ import { UserService } from '../user.service';
 })
 export class FilebrowserComponent implements OnInit {
 
-  private dropboxFilesURL: string = 'https://content.dropboxapi.com/1/files/auto/';
+  private dropboxFilesURL: string = 'https://api.dropboxapi.com/2/files/list_folder';
   private googleDriveFilesURL: string = 'https://www.googleapis.com/drive/v3/files';
+
+  public theDropbox: Object;
 
   constructor(
     private router: Router,
@@ -43,8 +45,23 @@ export class FilebrowserComponent implements OnInit {
     }).map(res => {
       return res.json();
     });
+    console.log(this.user.googleDrive);
+    this.getDropBoxFiles();
   }
 
+  getDropBoxFiles() {
+    var self = this;
+    this.user.getDropbox((data) => {
+      var dropBoxheaders = new Headers();
+      dropBoxheaders.append('Authorization', 'Bearer ' + data.dropboxToken);
+      dropBoxheaders.append('Content-Type', 'application/json');
+      self.http.post(self.dropboxFilesURL, JSON.stringify({"path":""}), {
+        headers: dropBoxheaders
+      }).subscribe(res => {
+        self.theDropbox = res.json().entries;
+      });
+    });
+  }
   ngOnInit() {}
 
 }

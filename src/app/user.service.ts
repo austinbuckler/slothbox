@@ -6,25 +6,26 @@ export class UserService {
 
   googleToken = "";
   googleAvatar = "https://placehold.it/32/32";
-  googleDrive = {};
-  dropbox = {};
+  public googleDrive: Object;
+  public dropbox: Object;
   private dropboxObserver: FirebaseObjectObservable<any>;
-  dropboxInfo = {};
+  private dropboxInfo: any;
 
   constructor(
     public af: AngularFire
   ) {
     this.dropboxObserver = af.database.object('/' + af.auth.getAuth().uid, { preserveSnapshot: true });
-    this.dropboxObserver.subscribe(snapshot => {
-      this.dropboxInfo = snapshot.val();;
-    });
   }
 
   logout() {
     this.googleToken = "";
     this.googleAvatar = "https://placehold.it/32/32";
-    this.googleDrive = {};
-    this.dropbox = {};
+  }
+
+  getDropbox(cb) {
+    return this.dropboxObserver.subscribe(snapshot => {
+      cb(snapshot.val());
+    });
   }
 
   setDropbox(token, uid) {

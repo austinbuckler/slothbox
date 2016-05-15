@@ -4,6 +4,7 @@ import { Http, HTTP_BINDINGS, Headers } from '@angular/http';
 import { environment } from '../environment';
 import { AngularFire } from 'angularfire2';
 import { UserService } from '../user.service';
+import {  FilebrowserComponent } from '../filebrowser/filebrowser.component';
 
 @Component({
   moduleId: module.id,
@@ -35,24 +36,26 @@ export class SidebarComponent implements OnInit {
   }
 
   accessDropbox() {
-    if (this.user.dropboxInfo == {}) {
-      var win = window.open('https://www.dropbox.com/1/oauth2/authorize?response_type=token&client_id=jbqssj52us3hsh2&redirect_uri=' + this.redirectURL, "Authorize Dropbox", 'width=800, height=600');
-      var self = this;
-      var pollTimer = window.setInterval(function() {
-        try {
-          if (win.document.URL.indexOf(self.redirectURL) != -1) {
-            window.clearInterval(pollTimer);
-            var url = win.document.URL;
-            var acToken = self.gup(url, 'access_token');
-            var tokenType = self.gup(url, 'token_type');
-            var uid = self.gup(url, 'uid');
-            win.close();
-            self.user.setDropbox(acToken, uid);
+    this.user.getDropbox((data) => {
+      if (data == {}) {
+        var win = window.open('https://www.dropbox.com/1/oauth2/authorize?response_type=token&client_id=jbqssj52us3hsh2&redirect_uri=' + this.redirectURL, "Authorize Dropbox", 'width=800, height=600');
+        var self = this;
+        var pollTimer = window.setInterval(function() {
+          try {
+            if (win.document.URL.indexOf(self.redirectURL) != -1) {
+              window.clearInterval(pollTimer);
+              var url = win.document.URL;
+              var acToken = self.gup(url, 'access_token');
+              var tokenType = self.gup(url, 'token_type');
+              var uid = self.gup(url, 'uid');
+              win.close();
+              self.user.setDropbox(acToken, uid);
+            }
+          } catch(e) {
           }
-        } catch(e) {
-        }
-      }, 100);
-    }
+        }, 100);
+      }
+    });
   }
 
   //credits: http://www.netlobo.com/url_query_string_javascript.html
