@@ -31,12 +31,13 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 
 export class SlothboxAppComponent {
   public title = 'nimbus';
+  public welcome = "Welcome to nimbus the all in one cloud storage manager!";
+
   constructor(
     public af:AngularFire,
     @Inject(FirebaseAuth) public auth: FirebaseAuth,
     public router:Router
   ) {}
-  welcome = "Welcome to nimbus the all in one cloud storage manager!";
 
   logout() {
     this.af.auth.logout();
