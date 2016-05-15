@@ -30,12 +30,13 @@ import { DropboxAuthComponent } from './cloud/dropbox-auth.component';
     component: FileUploadComponent
   },
   {
-      path: '/connect/dropbox',
-      name: 'DropboxConnect',
-      component: DropboxConnectComponent
+    path: '/connect/dropbox',
+    name: 'DropboxConnect',
+    component: DropboxConnectComponent
   },
   {
-    path: '/auth/dropbox/:access_token&:token_type&:uid',
+    // path: '/auth/dropbox/:access_token&:token_type&:uid',
+    path: '/auth/dropbox/',
     name: 'DropboxAuth',
     component: DropboxAuthComponent
   }

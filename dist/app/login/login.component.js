@@ -11,12 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var angularfire2_1 = require('angularfire2');
+var user_1 = require('../shared/user');
 var LoginComponent = (function () {
     function LoginComponent(router, af) {
         this.router = router;
         this.af = af;
         this.af.auth.subscribe(function (auth) {
             if (auth) {
+                user_1.user.googleToken = auth.google.accessToken;
+                user_1.user.googleAvatar = auth.google.cachedUserProfile;
+                console.log(user_1.user);
                 router.navigate(['FileUpload']);
             }
         });
@@ -25,6 +29,7 @@ var LoginComponent = (function () {
         this.af.auth.login({
             provider: angularfire2_1.AuthProviders.Google,
             method: angularfire2_1.AuthMethods.Popup,
+            scope: ["https://www.googleapis.com/auth/drive"]
         });
     };
     LoginComponent.prototype.overrideLogin = function () {

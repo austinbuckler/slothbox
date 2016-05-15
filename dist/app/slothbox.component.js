@@ -59,7 +59,8 @@ var SlothboxAppComponent = (function () {
                 component: dropbox_connect_component_1.DropboxConnectComponent
             },
             {
-                path: '/auth/dropbox/:access_token&:token_type&:uid',
+                // path: '/auth/dropbox/:access_token&:token_type&:uid',
+                path: '/auth/dropbox/',
                 name: 'DropboxAuth',
                 component: dropbox_auth_component_1.DropboxAuthComponent
             }

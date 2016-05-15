@@ -11,11 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var angularfire2_1 = require('angularfire2');
 var file_uploader_component_1 = require('../file-uploader/file-uploader.component');
+var user_1 = require('../shared/user');
 var FileUploadComponent = (function () {
     function FileUploadComponent(af) {
         this.af = af;
         this.options = {
-            url: 'http://ng2-uploader.com:10050/upload' // TODO!
+            url: 'https://www.googleapis.com/upload/drive/v3/files?uploadType=media',
+            authToken: user_1.user.googleToken,
+            withCredentials: true
         };
         this.uploadProgress = 0;
         this.fileUploadResponse = [];
