@@ -3,3 +3,6 @@
   whoop.
 </div>
 <h3>progress: {{uploadProgress}}%</h3>
+<p *ngIf="fileUploadResponse.length">
+    {{ fileUploadResponse | json }}
+</p>

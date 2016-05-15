@@ -52,166 +52,165 @@ class UploadedFile {
 export class FileUploaderService {
 
   url: string;
-    cors: boolean = false;
-    withCredentials: boolean = false;
-    multiple: boolean = false;
-    maxUploads: number = 3;
-    allowedExtensions: string[] = [];
-    maxSize: boolean = false;
-    data: Object = {};
-    noParams: boolean = true;
-    autoUpload: boolean = true;
-    multipart: boolean = true;
-    method: string = 'POST';
-    debug: boolean = false;
-    customHeaders: Object = {};
-    encodeHeaders: boolean = true;
-    authTokenPrefix: string = "Bearer";
-    authToken: string = undefined;
-    fieldName: string = "file";
+  cors: boolean = false;
+  withCredentials: boolean = false;
+  multiple: boolean = false;
+  maxUploads: number = 3;
+  allowedExtensions: string[] = [];
+  maxSize: boolean = false;
+  data: Object = {};
+  noParams: boolean = true;
+  autoUpload: boolean = true;
+  multipart: boolean = true;
+  method: string = 'POST';
+  debug: boolean = false;
+  customHeaders: Object = {};
+  encodeHeaders: boolean = true;
+  authTokenPrefix: string = "Bearer";
+  authToken: string = undefined;
+  fieldName: string = "file";
 
-    _queue: any[] = [];
-    _emitter: EventEmitter<any> = new EventEmitter(true);
+  _queue: any[] = [];
+  _emitter: EventEmitter<any> = new EventEmitter(true);
 
-    setOptions(options: any): void {
+  setOptions(options: any): void {
 
-      this.url = options.url != null ? options.url : this.url;
-      this.cors = options.cors != null ? options.cors : this.cors;
-      this.withCredentials = options.withCredentials != null ? options.withCredentials : this.withCredentials;
-      this.multiple = options.multiple != null ? options.multiple : this.multiple;
-      this.maxUploads = options.maxUploads != null ? options.maxUploads : this.maxUploads;
-      this.allowedExtensions = options.allowedExtensions != null ? options.allowedExtensions : this.allowedExtensions;
-      this.maxSize = options.maxSize != null ? options.maxSize : this.maxSize;
-      this.data = options.data != null ? options.data : this.data;
-      this.noParams = options.noParams != null ? options.noParams : this.noParams;
-      this.autoUpload = options.autoUpload != null ? options.autoUpload : this.autoUpload;
-      this.multipart = options.multipart != null ? options.multipart : this.multipart;
-      this.method = options.method != null ? options.method : this.method;
-      this.debug = options.debug != null ? options.debug : this.debug;
-      this.customHeaders = options.customHeaders != null ? options.customHeaders : this.customHeaders;
-      this.encodeHeaders = options.encodeHeaders != null ? options.encodeHeaders : this.encodeHeaders;
-      this.authTokenPrefix = options.authTokenPrefix != null ? options.authTokenPrefix : this.authTokenPrefix;
-      this.authToken = options.authToken != null ? options.authToken : this.authToken;
-      this.fieldName = options.fieldName != null ? options.fieldName : this.fieldName;
+    this.url = options.url != null ? options.url : this.url;
+    this.cors = options.cors != null ? options.cors : this.cors;
+    this.withCredentials = options.withCredentials != null ? options.withCredentials : this.withCredentials;
+    this.multiple = options.multiple != null ? options.multiple : this.multiple;
+    this.maxUploads = options.maxUploads != null ? options.maxUploads : this.maxUploads;
+    this.allowedExtensions = options.allowedExtensions != null ? options.allowedExtensions : this.allowedExtensions;
+    this.maxSize = options.maxSize != null ? options.maxSize : this.maxSize;
+    this.data = options.data != null ? options.data : this.data;
+    this.noParams = options.noParams != null ? options.noParams : this.noParams;
+    this.autoUpload = options.autoUpload != null ? options.autoUpload : this.autoUpload;
+    this.multipart = options.multipart != null ? options.multipart : this.multipart;
+    this.method = options.method != null ? options.method : this.method;
+    this.debug = options.debug != null ? options.debug : this.debug;
+    this.customHeaders = options.customHeaders != null ? options.customHeaders : this.customHeaders;
+    this.encodeHeaders = options.encodeHeaders != null ? options.encodeHeaders : this.encodeHeaders;
+    this.authTokenPrefix = options.authTokenPrefix != null ? options.authTokenPrefix : this.authTokenPrefix;
+    this.authToken = options.authToken != null ? options.authToken : this.authToken;
+    this.fieldName = options.fieldName != null ? options.fieldName : this.fieldName;
 
-      if (!this.multiple) {
-        this.maxUploads = 1;
-      }
+    if (!this.multiple) {
+      this.maxUploads = 1;
     }
+  }
 
-    uploadFilesInQueue(): void {
-      let newFiles = this._queue.filter((f) => { return !f.uploading; });
-      newFiles.forEach((f) => {
-        this.uploadFile(f);
-      });
-    };
+  uploadFilesInQueue(): void {
+    let newFiles = this._queue.filter((f) => { return !f.uploading; });
+    newFiles.forEach((f) => {
+      this.uploadFile(f);
+    });
+  };
 
-    uploadFile(file: any): void {
-      let xhr = new XMLHttpRequest();
-      let form = new FormData();
-      form.append(this.fieldName, file, file.name);
+  uploadFile(file: any): void {
+    let xhr = new XMLHttpRequest();
+    let form = new FormData();
+    form.append(this.fieldName, file, file.name);
 
-      let uploadingFile = new UploadedFile(
-          this.generateRandomIndex(),
-          file.name,
-          file.size
-      );
+    let uploadingFile = new UploadedFile(
+        this.generateRandomIndex(),
+        file.name,
+        file.size
+    );
 
-      let queueIndex = this._queue.indexOf(file);
+    let queueIndex = this._queue.indexOf(file);
 
-      xhr.upload.onprogress = (e) => {
-        if (e.lengthComputable) {
-          let percent = Math.round(e.loaded / e.total * 100);
-          uploadingFile.setProgres({
-            total: e.total,
-            loaded: e.loaded,
-            percent: percent
-          });
-
-          this._emitter.emit(uploadingFile);
-        }
-      }
-
-      xhr.upload.onabort = (e) => {
-        uploadingFile.setAbort();
-        this._emitter.emit(uploadingFile);
-      }
-
-      xhr.upload.onerror = (e) => {
-        uploadingFile.setError();
-        this._emitter.emit(uploadingFile);
-      }
-
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          uploadingFile.onFinished(
-              xhr.status,
-              xhr.statusText,
-              xhr.response
-          );
-          this.removeFileFromQueue(queueIndex);
-          this._emitter.emit(uploadingFile);
-        }
-      }
-
-      xhr.open(this.method, this.url, true);
-      xhr.withCredentials = this.withCredentials;
-
-      if (this.customHeaders) {
-        Object.keys(this.customHeaders).forEach((key) => {
-          xhr.setRequestHeader(key, this.customHeaders[key]);
+    xhr.upload.onprogress = (e) => {
+      if (e.lengthComputable) {
+        let percent = Math.round(e.loaded / e.total * 100);
+        uploadingFile.setProgres({
+          total: e.total,
+          loaded: e.loaded,
+          percent: percent
         });
-      }
 
-      if (this.authToken) {
-        xhr.setRequestHeader("Authorization", `${this.authTokenPrefix} ${this.authToken}`);
-      }
-
-      xhr.send(form);
-    }
-
-    addFilesToQueue(files: FileList[]): void {
-      for (let file of files) {
-        if (this.isFile(file) && !this.inQueue(file)) {
-          this._queue.push(file);
-        }
-      }
-
-      if (this.autoUpload) {
-        this.uploadFilesInQueue();
+        this._emitter.emit(uploadingFile);
       }
     }
 
-    removeFileFromQueue(i: number): void {
-      this._queue.splice(i, 1);
+    xhr.upload.onabort = (e) => {
+      uploadingFile.setAbort();
+      this._emitter.emit(uploadingFile);
     }
 
-    clearQueue(): void {
-      this._queue = [];
+    xhr.upload.onerror = (e) => {
+      uploadingFile.setError();
+      this._emitter.emit(uploadingFile);
     }
 
-    getQueueSize(): number {
-      return this._queue.length;
-    }
-
-    inQueue(file: any): boolean {
-      let fileInQueue = this._queue.filter((f) => { return f === file; });
-      return fileInQueue.length ? true : false;
-    }
-
-    isFile(file: any): boolean {
-      return file !== null && (file instanceof Blob || (file.name && file.size));
-    }
-
-    log(msg: any): void {
-      if (!this.debug) {
-        return;
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        uploadingFile.onFinished(
+            xhr.status,
+            xhr.statusText,
+            xhr.response
+        );
+        this.removeFileFromQueue(queueIndex);
+        this._emitter.emit(uploadingFile);
       }
-      console.log('[Ng2Uploader]:', msg);
     }
 
-    generateRandomIndex(): string {
-      return Math.random().toString(36).substring(7);
+    xhr.open(this.method, this.url, true);
+    xhr.withCredentials = this.withCredentials;
+
+    if (this.customHeaders) {
+      Object.keys(this.customHeaders).forEach((key) => {
+        xhr.setRequestHeader(key, this.customHeaders[key]);
+      });
     }
-    
+
+    if (this.authToken) {
+      xhr.setRequestHeader("Authorization", `${this.authTokenPrefix} ${this.authToken}`);
+    }
+
+    xhr.send(form);
+  }
+
+  addFilesToQueue(files: FileList[]): void {
+    for (let file of files) {
+      if (this.isFile(file) && !this.inQueue(file)) {
+        this._queue.push(file);
+      }
+    }
+
+    if (this.autoUpload) {
+      this.uploadFilesInQueue();
+    }
+  }
+
+  removeFileFromQueue(i: number): void {
+    this._queue.splice(i, 1);
+  }
+
+  clearQueue(): void {
+    this._queue = [];
+  }
+
+  getQueueSize(): number {
+    return this._queue.length;
+  }
+
+  inQueue(file: any): boolean {
+    let fileInQueue = this._queue.filter((f) => { return f === file; });
+    return fileInQueue.length ? true : false;
+  }
+
+  isFile(file: any): boolean {
+    return file !== null && (file instanceof Blob || (file.name && file.size));
+  }
+
+  log(msg: any): void {
+    if (!this.debug) {
+      return;
+    }
+    console.log('[Ng2Uploader]:', msg);
+  }
+
+  generateRandomIndex(): string {
+    return Math.random().toString(36).substring(7);
+  }
 }

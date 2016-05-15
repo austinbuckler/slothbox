@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 
+import { user } from '../shared/user';
+
 @Component({
   moduleId: module.id,
   selector: 'login-form',
@@ -13,6 +15,9 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, public af: AngularFire) {
     this.af.auth.subscribe((auth) => {
       if (auth) {
+        user.googleToken = auth.google.accessToken;
+        user.googleAvatar = auth.google.cachedUserProfile;
+        console.log(user);
         router.navigate(['FileUpload']);
       }
     });
@@ -21,6 +26,7 @@ export class LoginComponent implements OnInit {
     this.af.auth.login({
       provider: AuthProviders.Google,
       method: AuthMethods.Popup,
+      scope: ["https://www.googleapis.com/auth/drive"]
     });
   }
   overrideLogin() {

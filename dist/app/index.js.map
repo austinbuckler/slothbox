@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":";AAAA,4BAA0B,eAAe,CAAC;AAAlC,gDAAkC;AAC1C,mCAAmC,sBAAsB,CAAC;AAAlD,yEAAkD","sourcesContent":["export {environment} from './environment';\nexport {SlothboxAppComponent} from './slothbox.component';\n"]}
