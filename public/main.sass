@@ -1,0 +1,156 @@
+$color_logo: #1eb6ff
+$color_text_heavy: #3c4758
+$color_icon_light: #8492a6
+$color_text_light: #d0d9e4
+$color_highlight: #1cce66
+$color_account: #febe00
+$color_border: #e0e6ed
+$color_background: #f9fafc
+$color_white: #fff
+$default_border_radius: 3px
+$default_border: 1px $color_border solid
+
+body
+  margin: 0
+  background-color: $color_background
+  font-family: "lato", sans-serif
+  font-weight: 300
+
+a
+  color: $color_text_heavy
+  text-decoration: none
+
+.header
+  background-color: $color_white
+  min-height: 88px
+  width: 100%
+  display: flex
+  justify-content: space-between
+  align-items: center
+  border-bottom: $default_border
+  &-logo
+    color: $color_logo
+    width: 128px
+    margin-left: 3%
+  .search
+    width: 546px
+    border-radius: $default_border_radius
+    border: $default_border
+    outline: 0
+    background-color: $color_background
+    font-size: 12px
+    letter-spacing: 0.7px
+    font-weight: 200
+    ::-webkit-input-placeholder
+      color: $color_border
+  .profile
+    margin-right: 3%
+
+.profile
+  &-avatar
+    width: 32px
+    height: 32px
+    border-radius: 50%
+    background-color: $color_highlight
+  &-menu
+    display: none
+
+.search
+  min-height: 37px
+  padding: 0 12px
+
+.content
+  width: 100%
+
+.navbar
+  display: flex
+  align-items: center
+  justify-content: flex-start
+  &-col
+    flex-direction: column
+  &-item
+    font-weight: 200
+    &:last-of-type
+      &-item-icon
+        margin-right: 0
+  &-item-current
+    font-weight: 600
+  &-item-icon
+    margin-right: 15px
+
+.sidebar
+  width: 12.7%
+  float: left
+  height: 100vh
+  overflow-y: hidden
+  border-right: $default_border
+  padding-top: 32px
+  .navbar
+    align-items: flex-start
+    justify-content: space-around
+    max-width: 80%
+    margin: 0 auto
+    padding-bottom: 64px
+  .navbar-item
+    display: flex
+    justify-content: flex-start
+    text-align: left
+    align-items: center
+    padding-bottom: 12px
+    font-size: 15px
+  .footer
+    border-top: $default_border
+    max-width: 80%
+    margin: 0 auto
+
+.filebrowser
+  height: 100vh
+  float: left
+  overflow-y: hidden
+  width: 87.2%
+  &-head
+    width: 100%
+    .upper
+      background-color: $color_white
+      border-bottom: $default_border
+    .lower
+      max-width: 95%
+      margin: 0 auto
+  .breadcrumbs
+    height: 57px
+    display: flex
+    align-items: center
+    .breadcrumb
+      font-size: 21px
+      font-weight: 200
+      color: $color_text_light
+      &-current
+        color: $color_text_heavy
+  .navbar
+    height: 57px
+    width: 100%
+    max-width: 95%
+    margin: 0 auto
+    justify-content: space-between
+  .browser
+    table
+      width: 100%
+      tr
+        height: 57px
+        text-align: left
+        font-weight: 200
+        color: $color_text_heavy
+        td:first-of-type, th:first-of-type
+          padding-left: 34px
+      th
+        font-size: 14px
+        font-weight: 200
+      th, td
+        border-bottom: $default_border
+
+.list-title
+  &-upper
+    text-transform: uppercase
+    font-size: 11px
+    font-weight: 300
+    color: $color_text_heavy

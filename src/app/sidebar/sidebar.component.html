@@ -1,0 +1,22 @@
+<aside class="sidebar">
+  <section class="navbar navbar-col">
+    <a class="navbar-item" href="javascript:void(0);">Files</a>
+    <a class="navbar-item" href="javascript:void(0);">Recent</a>
+    <a class="navbar-item" href="javascript:void(0);">Deleted Files</a>
+  </section>
+  <footer class="footer">
+    <section class="meta"></section>
+    <section class="connections">
+      <h3 class="list-title list-title-upper">Connected Storage</h3>
+      <a class="navbar-item" (click)="accessDropbox()" href="javascript:void(0);">
+        <img src="img/dropbox.svg" class="navbar-item-icon" alt="dropbox logo">
+        Dropbox
+      </a>
+      <a class="navbar-item" href="javascript:void(0);">
+        <img src="img/add.svg" class="navbar-item-icon" alt="add storage">
+        Add Storage
+      </a>
+      <span class="navbar-item" (click)="logout()">logout</span>
+    </section>
+  </footer>
+</aside>

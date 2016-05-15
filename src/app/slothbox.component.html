@@ -1,4 +1,4 @@
-<section class="container container--main">
+<!-- <section class="container container--main">
   <section class="header">
     <h1 class="app-name">{{title}}</h1>
     <h3 class="app-welcome">{{welcome}}</h3>
@@ -7,5 +7,9 @@
     <a [routerLink]="['DropboxConnect']">Dropbox</a>
     <span *ngIf="auth | async" (click)="logout()">Logout</span>
   </nav>
+  <router-outlet></router-outlet>
+</section> -->
+<slothbox-actionbar></slothbox-actionbar>
+<section class="content">
   <router-outlet></router-outlet>
 </section>

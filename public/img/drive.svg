@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="19px" height="16px" viewBox="0 0 19 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.7.2 (28276) - http://www.bohemiancoding.com/sketch -->
+    <title>drive</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-sprite" transform="translate(-52.000000, -36.000000)">
+            <g id="drive" transform="translate(52.000000, 36.000000)">
+                <polygon id="Fill-23" fill="#FFC106" points="6.2256 0.2153 12.2736 0.2153 18.3206 10.5833 12.2736 10.5833"></polygon>
+                <polygon id="Fill-25" fill="#1976D2" points="3.1475 15.7666 6.1985 10.5826 18.3205 10.5826 15.2965 15.7666"></polygon>
+                <polygon id="Fill-27" fill="#4CAF50" points="0.1772 10.6377 3.1472 15.7667 9.2492 5.3997 6.2252 0.2157"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

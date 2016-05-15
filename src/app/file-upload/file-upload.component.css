@@ -4,7 +4,12 @@
   height: 320px;
   justify-content: center;
   align-items: center;
-  background-color: red;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
   color: #fff;
   font-size: 13px;
 }
+.droparea-hidden { display: none; }

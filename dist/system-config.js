@@ -34,6 +34,9 @@ var barrels = [
     'app/login-component',
     'app/file-upload',
     'app/file-uploader',
+    'app/sidebar',
+    'app/actionbar',
+    'app/filebrowser',
 ];
 var cliSystemConfigPackages = {};
 barrels.forEach(function (barrelName) {
