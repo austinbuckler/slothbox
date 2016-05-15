@@ -13,15 +13,16 @@ import { user } from '../shared/user';
 export class LoginComponent implements OnInit {
 
   constructor(private router: Router, public af: AngularFire) {
-    af.auth.subscribe((auth) => {
-      if (auth) {
-        user.googleToken = auth.google.accessToken;
-        user.googleAvatar = auth.google.profileImageURL;
-      }
-    });
-    if (af.auth) {
+    if (af.auth.getAuth() != null) {
       router.navigate(['Files']);
     }
+    af.auth.subscribe((auth) => {
+      if (auth && auth.google != null) {
+        user.googleToken = auth.google.accessToken;
+        user.googleAvatar = auth.google.profileImageURL;
+        router.navigate(['Files']);
+      }
+    });
   }
 
   login() {
@@ -29,13 +30,6 @@ export class LoginComponent implements OnInit {
       provider: AuthProviders.Google,
       method: AuthMethods.Popup,
       scope: ["https://www.googleapis.com/auth/drive"]
-    });
-  }
-
-  overrideLogin() {
-    this.af.auth.login({
-      provider: AuthProviders.Anonymous,
-      method: AuthMethods.Anonymous,
     });
   }
 

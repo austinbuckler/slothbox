@@ -28,18 +28,16 @@ var SlothboxAppComponent = (function () {
         this.router = router;
         this.title = 'nimbus';
         this.welcome = "Welcome to nimbus the all in one cloud storage manager!";
-        if (af.auth) {
-            var auth_1 = af.auth.getAuth().google;
-            if (user_1.user.googleToken == "" || user_1.user.googleAvatar == "") {
-                user_1.user.googleToken = auth_1.accessToken;
-                user_1.user.googleAvatar = auth_1.profileImageURL;
-            }
+        if (af.auth.getAuth() != null) {
+            var googleAuth = af.auth.getAuth().google;
+            user_1.user.googleToken = googleAuth.accessToken;
+            user_1.user.googleAvatar = googleAuth.profileImageURL;
+        }
+        else {
+            user_1.user.googleAvatar = "https://placehold.it/32/32";
+            user_1.user.googleToken = "";
         }
     }
-    SlothboxAppComponent.prototype.logout = function () {
-        this.af.auth.logout();
-        this.router.navigate(['Login']);
-    };
     SlothboxAppComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

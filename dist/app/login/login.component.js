@@ -16,27 +16,22 @@ var LoginComponent = (function () {
     function LoginComponent(router, af) {
         this.router = router;
         this.af = af;
-        af.auth.subscribe(function (auth) {
-            if (auth) {
-                user_1.user.googleToken = auth.google.accessToken;
-                user_1.user.googleAvatar = auth.google.profileImageURL;
-            }
-        });
-        if (af.auth) {
+        if (af.auth.getAuth() != null) {
             router.navigate(['Files']);
         }
+        af.auth.subscribe(function (auth) {
+            if (auth && auth.google != null) {
+                user_1.user.googleToken = auth.google.accessToken;
+                user_1.user.googleAvatar = auth.google.profileImageURL;
+                router.navigate(['Files']);
+            }
+        });
     }
     LoginComponent.prototype.login = function () {
         this.af.auth.login({
             provider: angularfire2_1.AuthProviders.Google,
             method: angularfire2_1.AuthMethods.Popup,
             scope: ["https://www.googleapis.com/auth/drive"]
-        });
-    };
-    LoginComponent.prototype.overrideLogin = function () {
-        this.af.auth.login({
-            provider: angularfire2_1.AuthProviders.Anonymous,
-            method: angularfire2_1.AuthMethods.Anonymous,
         });
     };
     LoginComponent.prototype.ngOnInit = function () {

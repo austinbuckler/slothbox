@@ -9,10 +9,9 @@ import { user } from '../shared/user';
 })
 export class ActionbarComponent implements OnInit {
 
-  public userAvatar = (user.googleAvatar == "" ? "https://placehold.it/32/32" : user.googleAvatar);
+  public userAvatar = user.googleAvatar;
 
   constructor() {
-    console.log(user.googleAvatar);
   }
 
   ngOnInit() {

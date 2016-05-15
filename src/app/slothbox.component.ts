@@ -59,18 +59,14 @@ export class SlothboxAppComponent {
     @Inject(FirebaseAuth) public auth: FirebaseAuth,
     public router:Router
   ) {
-    if (af.auth) {
-      let auth = af.auth.getAuth().google;
-      if (user.googleToken == "" || user.googleAvatar == "") {
-        user.googleToken = auth.accessToken;
-        user.googleAvatar = auth.profileImageURL;
-      }
+    if (af.auth.getAuth() != null) {
+      let googleAuth = af.auth.getAuth().google;
+      user.googleToken = googleAuth.accessToken;
+      user.googleAvatar = googleAuth.profileImageURL;
+    } else {
+      user.googleAvatar = "https://placehold.it/32/32";
+      user.googleToken = "";
     }
-  }
-
-  logout() {
-    this.af.auth.logout();
-    this.router.navigate(['Login']);
   }
 
 }

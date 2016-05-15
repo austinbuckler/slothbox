@@ -1,5 +1,5 @@
 export const user = {
   googleToken: "",
   dropboxToken: "",
-  googleAvatar: ""
+  googleAvatar: "https://placehold.it/32/32"
 };
