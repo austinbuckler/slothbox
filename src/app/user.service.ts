@@ -14,7 +14,9 @@ export class UserService {
   constructor(
     public af: AngularFire
   ) {
-    this.dropboxObserver = af.database.object('/' + af.auth.getAuth().uid, { preserveSnapshot: true });
+    if (af.auth.getAuth()) {
+      this.dropboxObserver = af.database.object('/' + af.auth.getAuth().uid, { preserveSnapshot: true });
+    }
   }
 
   logout() {

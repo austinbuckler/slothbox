@@ -6,7 +6,7 @@ import { UserService } from '../user.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'login-form',
+  selector: 'login-comp',
   templateUrl: 'login.component.html',
   styleUrls: ['login.component.css']
 })
