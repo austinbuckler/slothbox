@@ -1,8 +1,10 @@
+
 import { Component, Inject } from '@angular/core';
 import { RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { AngularFire, FirebaseAuth } from 'angularfire2';
 import { LoginComponent } from './login/login.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import {DropBoxComponent} from './cloud/dropbox-auth.component';
 
 @Component({
   moduleId: module.id,
@@ -26,7 +28,12 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     path: '/upload',
     name: 'FileUpload',
     component: FileUploadComponent
-  }
+  },
+{
+    path: '/auth/dropbox',
+    name: 'DropBox',
+    component: DropBoxComponent
+}
 ])
 
 export class SlothboxAppComponent {
