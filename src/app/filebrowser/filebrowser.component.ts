@@ -3,7 +3,6 @@ import { Router } from '@angular/router-deprecated';
 import { AngularFire } from 'angularfire2';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { user } from '../shared/user';
 
 @Component({
   moduleId: module.id,
@@ -14,11 +13,11 @@ import { user } from '../shared/user';
 })
 export class FilebrowserComponent implements OnInit {
 
-  constructor(private router: Router, public af: AngularFire) {
+  constructor(
+    private router: Router,
+    public af: AngularFire
+  ) {
     if (af.auth.getAuth() == null) {
-      user.googleToken = "";
-      user.dropboxToken = "";
-      user.googleAvatar = "https://placehold.it/32/32";
       router.navigate(['Login']);
     }
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 
-import { user } from '../shared/user';
+import { UserService } from '../user.service';
 
 @Component({
   moduleId: module.id,
@@ -12,7 +12,11 @@ import { user } from '../shared/user';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, public af: AngularFire) {
+  constructor(
+    private router: Router,
+    public af: AngularFire,
+    public user: UserService
+  ) {
     if (af.auth.getAuth() != null) {
       router.navigate(['Files']);
     }
@@ -31,6 +35,11 @@ export class LoginComponent implements OnInit {
       method: AuthMethods.Popup,
       scope: ["https://www.googleapis.com/auth/drive"]
     });
+    if (this.af.auth.getAuth()) {
+      let auth = this.af.auth.getAuth();
+      this.user.googleToken = auth.google.accessToken;
+      this.user.googleAvatar = auth.google.profileImageURL;
+    }
   }
 
   ngOnInit() {

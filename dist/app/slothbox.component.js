@@ -20,22 +20,19 @@ var dropbox_auth_component_1 = require('./cloud/dropbox-auth.component');
 var sidebar_component_1 = require('./sidebar/sidebar.component');
 var actionbar_component_1 = require('./actionbar/actionbar.component');
 var filebrowser_component_1 = require('./filebrowser/filebrowser.component');
-var user_1 = require('./shared/user');
+var user_service_1 = require('./user.service');
 var SlothboxAppComponent = (function () {
-    function SlothboxAppComponent(af, auth, router) {
+    function SlothboxAppComponent(af, auth, router, user) {
         this.af = af;
         this.auth = auth;
         this.router = router;
+        this.user = user;
         this.title = 'nimbus';
         this.welcome = "Welcome to nimbus the all in one cloud storage manager!";
-        if (af.auth.getAuth() != null) {
+        if (auth != null) {
             var googleAuth = af.auth.getAuth().google;
-            user_1.user.googleToken = googleAuth.accessToken;
-            user_1.user.googleAvatar = googleAuth.profileImageURL;
-        }
-        else {
-            user_1.user.googleAvatar = "https://placehold.it/32/32";
-            user_1.user.googleToken = "";
+            user.googleToken = googleAuth.accessToken;
+            user.googleAvatar = googleAuth.profileImageURL;
         }
     }
     SlothboxAppComponent = __decorate([
@@ -78,7 +75,7 @@ var SlothboxAppComponent = (function () {
             }
         ]),
         __param(1, core_1.Inject(angularfire2_1.FirebaseAuth)), 
-        __metadata('design:paramtypes', [angularfire2_1.AngularFire, angularfire2_1.FirebaseAuth, router_deprecated_1.Router])
+        __metadata('design:paramtypes', [angularfire2_1.AngularFire, angularfire2_1.FirebaseAuth, router_deprecated_1.Router, user_service_1.UserService])
     ], SlothboxAppComponent);
     return SlothboxAppComponent;
 }());

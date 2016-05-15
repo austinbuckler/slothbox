@@ -11,18 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var angularfire2_1 = require('angularfire2');
-var user_1 = require('../shared/user');
+var user_service_1 = require('../user.service');
 var LoginComponent = (function () {
-    function LoginComponent(router, af) {
+    function LoginComponent(router, af, user) {
         this.router = router;
         this.af = af;
+        this.user = user;
         if (af.auth.getAuth() != null) {
             router.navigate(['Files']);
         }
         af.auth.subscribe(function (auth) {
             if (auth && auth.google != null) {
-                user_1.user.googleToken = auth.google.accessToken;
-                user_1.user.googleAvatar = auth.google.profileImageURL;
+                user.googleToken = auth.google.accessToken;
+                user.googleAvatar = auth.google.profileImageURL;
                 router.navigate(['Files']);
             }
         });
@@ -33,6 +34,11 @@ var LoginComponent = (function () {
             method: angularfire2_1.AuthMethods.Popup,
             scope: ["https://www.googleapis.com/auth/drive"]
         });
+        if (this.af.auth.getAuth()) {
+            var auth = this.af.auth.getAuth();
+            this.user.googleToken = auth.google.accessToken;
+            this.user.googleAvatar = auth.google.profileImageURL;
+        }
     };
     LoginComponent.prototype.ngOnInit = function () {
     };
@@ -43,7 +49,7 @@ var LoginComponent = (function () {
             templateUrl: 'login.component.html',
             styleUrls: ['login.component.css']
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router, angularfire2_1.AngularFire])
+        __metadata('design:paramtypes', [router_deprecated_1.Router, angularfire2_1.AngularFire, user_service_1.UserService])
     ], LoginComponent);
     return LoginComponent;
 }());

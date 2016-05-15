@@ -8,7 +8,7 @@ import { DropboxAuthComponent } from './cloud/dropbox-auth.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ActionbarComponent } from './actionbar/actionbar.component';
 import { FilebrowserComponent } from './filebrowser/filebrowser.component';
-import { user } from './shared/user';
+import { UserService } from './user.service';
 
 @Component({
   moduleId: module.id,
@@ -57,15 +57,13 @@ export class SlothboxAppComponent {
   constructor(
     public af:AngularFire,
     @Inject(FirebaseAuth) public auth: FirebaseAuth,
-    public router:Router
+    public router: Router,
+    public user: UserService
   ) {
-    if (af.auth.getAuth() != null) {
+    if (auth != null) {
       let googleAuth = af.auth.getAuth().google;
       user.googleToken = googleAuth.accessToken;
       user.googleAvatar = googleAuth.profileImageURL;
-    } else {
-      user.googleAvatar = "https://placehold.it/32/32";
-      user.googleToken = "";
     }
   }
 

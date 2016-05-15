@@ -11,13 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var angularfire2_1 = require('angularfire2');
 var file_uploader_component_1 = require('../file-uploader/file-uploader.component');
-var user_1 = require('../shared/user');
+var user_service_1 = require('../user.service');
 var FileUploadComponent = (function () {
-    function FileUploadComponent(af) {
+    function FileUploadComponent(af, user) {
         this.af = af;
+        this.user = user;
         this.options = {
             url: 'https://www.googleapis.com/upload/drive/v3/files?uploadType=media',
-            authToken: user_1.user.googleToken,
+            authToken: this.user.googleToken,
             withCredentials: true
         };
         this.uploadProgress = 0;
@@ -50,7 +51,7 @@ var FileUploadComponent = (function () {
             styleUrls: ['file-upload.component.css'],
             directives: [file_uploader_component_1.UPLOAD_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [angularfire2_1.AngularFire])
+        __metadata('design:paramtypes', [angularfire2_1.AngularFire, user_service_1.UserService])
     ], FileUploadComponent);
     return FileUploadComponent;
 }());

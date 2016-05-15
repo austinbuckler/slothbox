@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { user } from '../shared/user';
+import { Component, OnInit, Inject } from '@angular/core';
+import { UserService } from '../user.service';
+import { FirebaseAuth } from 'angularfire2';
 
 @Component({
   moduleId: module.id,
@@ -9,9 +10,10 @@ import { user } from '../shared/user';
 })
 export class ActionbarComponent implements OnInit {
 
-  public userAvatar = user.googleAvatar;
-
-  constructor() {
+  constructor(
+    public auth: FirebaseAuth,
+    public user: UserService
+  ) {
   }
 
   ngOnInit() {

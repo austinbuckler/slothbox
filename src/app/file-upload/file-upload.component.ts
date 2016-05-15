@@ -1,7 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { UPLOAD_DIRECTIVES } from '../file-uploader/file-uploader.component';
-import { user } from '../shared/user';
+import { UserService } from '../user.service';
 
 @Component({
   moduleId: module.id,
@@ -14,13 +14,16 @@ export class FileUploadComponent {
   zone: NgZone;
   options: Object = {
     url: 'https://www.googleapis.com/upload/drive/v3/files?uploadType=media',
-    authToken: user.googleToken,
+    authToken: this.user.googleToken,
     withCredentials: true
   };
   uploadProgress: number = 0;
   fileUploadResponse: any[] = [];
 
-  constructor(public af:AngularFire) {
+  constructor(
+    public af:AngularFire,
+    public user: UserService
+  ) {
     this.zone = new NgZone({ enableLongStackTrace: false });
   }
 

@@ -1,8 +1,8 @@
-<section class="header">
+<section *ngIf="auth | async" class="header">
   <img class="header-logo" src="" alt="Nimbus" />
   <input class="search" placeholder="Search" />
   <section class="profile">
-    <img class="profile-avatar" src={{userAvatar}} />
+    <img class="profile-avatar" src={{user.googleAvatar}} />
     <section class="profile-menu">
       <header class="profile-meta">
         <h2 class="profile-name"></h2>
