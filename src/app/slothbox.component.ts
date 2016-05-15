@@ -3,8 +3,6 @@ import { RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angul
 import { AngularFire, FirebaseAuth } from 'angularfire2';
 import { LoginComponent } from './login/login.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
-import { DropboxConnectComponent } from './cloud/dropbox-connect.component';
-import { DropboxAuthComponent } from './cloud/dropbox-auth.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ActionbarComponent } from './actionbar/actionbar.component';
 import { FilebrowserComponent } from './filebrowser/filebrowser.component';
@@ -32,16 +30,6 @@ import { UserService } from './user.service';
     name: 'Login',
     component: LoginComponent,
     useAsDefault: true
-  },
-  {
-    path: '/connect/dropbox',
-    name: 'DropboxConnect',
-    component: DropboxConnectComponent
-  },
-  {
-    path: '/auth/dropbox/:access_token&:token_type:&:uid',
-    name: 'DropboxAuth',
-    component: DropboxAuthComponent
   },
   {
     path: '/files',

@@ -7,6 +7,7 @@ export class UserService {
 
   googleToken = "";
   dropboxToken = "";
+  dropboxUID = "";
   googleAvatar = "https://placehold.it/32/32";
 
   logout() {
