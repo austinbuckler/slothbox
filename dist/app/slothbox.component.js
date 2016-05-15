@@ -18,6 +18,9 @@ var login_component_1 = require('./login/login.component');
 var file_upload_component_1 = require('./file-upload/file-upload.component');
 var dropbox_connect_component_1 = require('./cloud/dropbox-connect.component');
 var dropbox_auth_component_1 = require('./cloud/dropbox-auth.component');
+var sidebar_component_1 = require('./sidebar/sidebar.component');
+var actionbar_component_1 = require('./actionbar/actionbar.component');
+var filebrowser_component_1 = require('./filebrowser/filebrowser.component');
 var SlothboxAppComponent = (function () {
     function SlothboxAppComponent(af, auth, router) {
         this.af = af;
@@ -36,7 +39,12 @@ var SlothboxAppComponent = (function () {
             selector: 'slothbox-app',
             templateUrl: 'slothbox.component.html',
             styleUrls: ['slothbox.component.css'],
-            directives: [router_deprecated_1.ROUTER_DIRECTIVES],
+            directives: [
+                router_deprecated_1.ROUTER_DIRECTIVES,
+                actionbar_component_1.ActionbarComponent,
+                sidebar_component_1.SidebarComponent,
+                filebrowser_component_1.FilebrowserComponent
+            ],
             providers: [
                 router_deprecated_1.ROUTER_PROVIDERS
             ]

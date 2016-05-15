@@ -5,13 +5,21 @@ import { LoginComponent } from './login/login.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { DropboxConnectComponent } from './cloud/dropbox-connect.component';
 import { DropboxAuthComponent } from './cloud/dropbox-auth.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ActionbarComponent } from './actionbar/actionbar.component';
+import { FilebrowserComponent } from './filebrowser/filebrowser.component';
 
 @Component({
   moduleId: module.id,
   selector: 'slothbox-app',
   templateUrl: 'slothbox.component.html',
   styleUrls: ['slothbox.component.css'],
-  directives: [ROUTER_DIRECTIVES],
+  directives: [
+    ROUTER_DIRECTIVES,
+    ActionbarComponent,
+    SidebarComponent,
+    FilebrowserComponent
+  ],
   providers: [
     ROUTER_PROVIDERS
   ]
