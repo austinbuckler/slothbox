@@ -24,8 +24,6 @@ export class FilebrowserComponent implements OnInit {
 
   private dropboxFilesURL: string = 'https://content.dropboxapi.com/1/files/auto/';
   private googleDriveFilesURL: string = 'https://www.googleapis.com/drive/v3/files';
-  public googleDriveFiles: Object;
-  public dropboxFiles: Object;
 
   constructor(
     private router: Router,
@@ -40,12 +38,11 @@ export class FilebrowserComponent implements OnInit {
       'Authorization': 'Bearer ' + user.googleToken
     });
     var self = this;
-    this.googleDriveFiles = http.get(this.googleDriveFilesURL, {
+    user.googleDrive = http.get(this.googleDriveFilesURL, {
       headers: driveHeaders
-    }).subscribe(res => {
-      return res;
+    }).map(res => {
+      return res.json();
     });
-    console.log(this.googleDriveFiles);
   }
 
   ngOnInit() {}

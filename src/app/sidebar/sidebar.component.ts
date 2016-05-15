@@ -35,7 +35,7 @@ export class SidebarComponent implements OnInit {
   }
 
   accessDropbox() {
-    if (this.user.dropboxToken == "") {
+    if (this.user.dropboxInfo == {}) {
       var win = window.open('https://www.dropbox.com/1/oauth2/authorize?response_type=token&client_id=jbqssj52us3hsh2&redirect_uri=' + this.redirectURL, "Authorize Dropbox", 'width=800, height=600');
       var self = this;
       var pollTimer = window.setInterval(function() {
@@ -47,15 +47,11 @@ export class SidebarComponent implements OnInit {
             var tokenType = self.gup(url, 'token_type');
             var uid = self.gup(url, 'uid');
             win.close();
-            self.user.dropboxToken = acToken;
-            self.user.dropboxUID = uid;
-            console.log({acToken, uid});
+            self.user.setDropbox(acToken, uid);
           }
         } catch(e) {
         }
       }, 100);
-    } else {
-      console.log({token: this.user.dropboxToken});
     }
   }
 
