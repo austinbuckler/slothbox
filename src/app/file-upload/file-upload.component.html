@@ -1,4 +1,4 @@
-<div class="droparea droparea-hidden" [FileDropUploader]="options" (onUpload)="handleDropUpload($event)"></div>
+<div [ngClass]="classMap" [FileDropUploader]="options" (onUpload)="handleDropUpload($event)"></div>
 <!-- <h3>progress: {{uploadProgress}}%</h3>
 <p //*ngIf="fileUploadResponse.length">
     {{ fileUploadResponse | json }}

@@ -36,9 +36,9 @@ describe('Component: Actionbar', () => {
 
 @Component({
   selector: 'test',
-  template: `
-    <app-actionbar></app-actionbar>
-  `,
+  template: 
+    '<app-actionbar></app-actionbar>'
+  ,
   directives: [ActionbarComponent]
 })
 class ActionbarComponentTestController {

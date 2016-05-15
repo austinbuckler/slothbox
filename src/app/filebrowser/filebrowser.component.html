@@ -31,7 +31,7 @@
     </section>
   </header>
   <section class="browser">
-    <file-upload-box></file-upload-box>
+      <button (click)="getDropBoxFiles()">Get DropBox Files</button>
     <table>
       <thead>
         <tr>
@@ -42,8 +42,14 @@
         </tr>
       </thead>
       <tbody>
-
+          <tr *ngFor="let file of dropboxFiles">
+              <td>{{file.name}}</td>
+              <td>{{file.name}}</td>
+              <td>{{file.name}}</td>
+              <td>{{file.name}}</td>
+          </tr>
       </tbody>
     </table>
+    <file-upload-box></file-upload-box>
   </section>
 </main>

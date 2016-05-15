@@ -4,6 +4,7 @@ import { Http, HTTP_BINDINGS, Headers } from '@angular/http';
 import { environment } from '../environment';
 import { AngularFire } from 'angularfire2';
 import { UserService } from '../user.service';
+import {  FilebrowserComponent } from '../filebrowser/filebrowser.component';
 
 @Component({
   moduleId: module.id,
