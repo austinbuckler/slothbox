@@ -1,3 +1,5 @@
-<p>
-  wow we made it :)
-</p>
+<h2>drag and drop that sh*t</h2>
+<div class="droparea" [FileDropUploader]="options" (onUpload)="handleDropUpload($event)">
+  whoop.
+</div>
+<h3>progress: {{uploadProgress}}%</h3>
