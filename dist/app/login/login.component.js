@@ -16,14 +16,15 @@ var LoginComponent = (function () {
     function LoginComponent(router, af) {
         this.router = router;
         this.af = af;
-        this.af.auth.subscribe(function (auth) {
+        af.auth.subscribe(function (auth) {
             if (auth) {
                 user_1.user.googleToken = auth.google.accessToken;
-                user_1.user.googleAvatar = auth.google.cachedUserProfile;
-                console.log(user_1.user);
-                router.navigate(['FileUpload']);
+                user_1.user.googleAvatar = auth.google.profileImageURL;
             }
         });
+        if (af.auth) {
+            router.navigate(['Files']);
+        }
     }
     LoginComponent.prototype.login = function () {
         this.af.auth.login({
@@ -39,7 +40,6 @@ var LoginComponent = (function () {
         });
     };
     LoginComponent.prototype.ngOnInit = function () {
-        // console.log(this.af.auth.getAuth().uid);
     };
     LoginComponent = __decorate([
         core_1.Component({

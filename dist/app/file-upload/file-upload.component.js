@@ -45,7 +45,7 @@ var FileUploadComponent = (function () {
     FileUploadComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'app-file-upload',
+            selector: 'file-upload-box',
             templateUrl: 'file-upload.component.html',
             styleUrls: ['file-upload.component.css'],
             directives: [file_uploader_component_1.UPLOAD_DIRECTIVES]

@@ -5,7 +5,7 @@ import { user } from '../shared/user';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-file-upload',
+  selector: 'file-upload-box',
   templateUrl: 'file-upload.component.html',
   styleUrls: ['file-upload.component.css'],
   directives: [UPLOAD_DIRECTIVES]

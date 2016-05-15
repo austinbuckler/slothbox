@@ -8,6 +8,7 @@ import { DropboxAuthComponent } from './cloud/dropbox-auth.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ActionbarComponent } from './actionbar/actionbar.component';
 import { FilebrowserComponent } from './filebrowser/filebrowser.component';
+import { user } from './shared/user';
 
 @Component({
   moduleId: module.id,
@@ -33,20 +34,19 @@ import { FilebrowserComponent } from './filebrowser/filebrowser.component';
     useAsDefault: true
   },
   {
-    path: '/upload',
-    name: 'FileUpload',
-    component: FileUploadComponent
-  },
-  {
     path: '/connect/dropbox',
     name: 'DropboxConnect',
     component: DropboxConnectComponent
   },
   {
-    // path: '/auth/dropbox/:access_token&:token_type&:uid',
     path: '/auth/dropbox/',
     name: 'DropboxAuth',
     component: DropboxAuthComponent
+  },
+  {
+    path: '/files',
+    name: 'Files',
+    component: FilebrowserComponent
   }
 ])
 
@@ -58,7 +58,15 @@ export class SlothboxAppComponent {
     public af:AngularFire,
     @Inject(FirebaseAuth) public auth: FirebaseAuth,
     public router:Router
-  ) {}
+  ) {
+    if (af.auth) {
+      let auth = af.auth.getAuth().google;
+      if (user.googleToken == "" || user.googleAvatar == "") {
+        user.googleToken = auth.accessToken;
+        user.googleAvatar = auth.profileImageURL;
+      }
+    }
+  }
 
   logout() {
     this.af.auth.logout();

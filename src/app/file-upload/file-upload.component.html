@@ -1,8 +1,5 @@
-<h2>drag and drop that sh*t</h2>
-<div class="droparea" [FileDropUploader]="options" (onUpload)="handleDropUpload($event)">
-  whoop.
-</div>
-<h3>progress: {{uploadProgress}}%</h3>
-<p *ngIf="fileUploadResponse.length">
+<div class="droparea droparea-hidden" [FileDropUploader]="options" (onUpload)="handleDropUpload($event)"></div>
+<!-- <h3>progress: {{uploadProgress}}%</h3>
+<p //*ngIf="fileUploadResponse.length">
     {{ fileUploadResponse | json }}
-</p>
+</p> -->

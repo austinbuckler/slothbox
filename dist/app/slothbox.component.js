@@ -15,12 +15,12 @@ var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var angularfire2_1 = require('angularfire2');
 var login_component_1 = require('./login/login.component');
-var file_upload_component_1 = require('./file-upload/file-upload.component');
 var dropbox_connect_component_1 = require('./cloud/dropbox-connect.component');
 var dropbox_auth_component_1 = require('./cloud/dropbox-auth.component');
 var sidebar_component_1 = require('./sidebar/sidebar.component');
 var actionbar_component_1 = require('./actionbar/actionbar.component');
 var filebrowser_component_1 = require('./filebrowser/filebrowser.component');
+var user_1 = require('./shared/user');
 var SlothboxAppComponent = (function () {
     function SlothboxAppComponent(af, auth, router) {
         this.af = af;
@@ -28,6 +28,13 @@ var SlothboxAppComponent = (function () {
         this.router = router;
         this.title = 'nimbus';
         this.welcome = "Welcome to nimbus the all in one cloud storage manager!";
+        if (af.auth) {
+            var auth_1 = af.auth.getAuth().google;
+            if (user_1.user.googleToken == "" || user_1.user.googleAvatar == "") {
+                user_1.user.googleToken = auth_1.accessToken;
+                user_1.user.googleAvatar = auth_1.profileImageURL;
+            }
+        }
     }
     SlothboxAppComponent.prototype.logout = function () {
         this.af.auth.logout();
@@ -57,20 +64,19 @@ var SlothboxAppComponent = (function () {
                 useAsDefault: true
             },
             {
-                path: '/upload',
-                name: 'FileUpload',
-                component: file_upload_component_1.FileUploadComponent
-            },
-            {
                 path: '/connect/dropbox',
                 name: 'DropboxConnect',
                 component: dropbox_connect_component_1.DropboxConnectComponent
             },
             {
-                // path: '/auth/dropbox/:access_token&:token_type&:uid',
                 path: '/auth/dropbox/',
                 name: 'DropboxAuth',
                 component: dropbox_auth_component_1.DropboxAuthComponent
+            },
+            {
+                path: '/files',
+                name: 'Files',
+                component: filebrowser_component_1.FilebrowserComponent
             }
         ]),
         __param(1, core_1.Inject(angularfire2_1.FirebaseAuth)), 

@@ -31,6 +31,7 @@ a
   &-logo
     color: $color_logo
     width: 128px
+    margin-left: 3%
   .search
     width: 546px
     border-radius: $default_border_radius
@@ -42,6 +43,9 @@ a
     font-weight: 200
     ::-webkit-input-placeholder
       color: $color_border
+  .profile
+    margin-right: 3%
+
 .profile
   &-avatar
     width: 32px
@@ -66,8 +70,13 @@ a
     flex-direction: column
   &-item
     font-weight: 200
+    &:last-of-type
+      &-item-icon
+        margin-right: 0
   &-item-current
     font-weight: 600
+  &-item-icon
+    margin-right: 15px
 
 .sidebar
   width: 12.7%
